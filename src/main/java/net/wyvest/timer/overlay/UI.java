@@ -20,6 +20,7 @@ public class UI {
     private static final Minecraft mc = Minecraft.getMinecraft();
     private static final FontRenderer fontRenderer = mc.fontRendererObj;
 
+
     public UI() {
         instance = this;
     }
@@ -31,6 +32,9 @@ public class UI {
         int height = 10;
         String text;
         int color;
+        final boolean pad = TimerConfig.hasPadding;
+        int padding = pad ? 5 : 0;
+        int yOffset = 2;
 
         if (!TimerConfig.modToggled) {
             return;
@@ -90,15 +94,28 @@ public class UI {
                 //honestly i have no idea why but chroma doesn't work if i put it in the interface
                 color = java.awt.Color.HSBtoRGB(System.currentTimeMillis() % 2000L / 2000.0F, 0.8F, 0.8F);
         }
+
         if (TimerConfig.modToggled) {
-            fontRenderer.drawString(text, textPadding, y, color);
+            height += 9;
+            if (TimerConfig.renderShadow) {
+                fontRenderer.drawStringWithShadow(text, x + textPadding,
+                        y + yOffset + padding,
+                        color);
+            } else {
+                fontRenderer.drawString(text, x + textPadding,
+                        y + yOffset + padding,
+                        color);
+            }
+
         }
+
 
         if (TimerConfig.displayBackground) {
             GlStateManager.translate(1.0, 1.0, -100);
-            Gui.drawRect(x - 1, y - 1, fontRenderer.getStringWidth(text) + 10, y + height, Integer.MIN_VALUE);
+            Gui.drawRect(x - 1, y - 1, x + fontRenderer.getStringWidth(text) + 10, y + height, Integer.MIN_VALUE);
             GlStateManager.translate(1.0, 1.0, 0);
         }
+
 
         GlStateManager.popMatrix();
     }

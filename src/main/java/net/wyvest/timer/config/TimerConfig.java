@@ -37,11 +37,24 @@ public class TimerConfig extends Vigilant {
     )
     public static boolean displayBackground;
 
-    @Property(type = PropertyType.NUMBER, name = "x", category = "Render", hidden = true)
-    public static int x = 0;
+    @Property(
+            type = PropertyType.SWITCH, name = "Render Shadow",
+            description = "Toggle the shadow of text in the timer.",
+            category = "Render"
+    )
+    public static boolean renderShadow;
+
+    @Property(
+            type = PropertyType.SWITCH, name = "Pad Sides",
+            description = "Pad the sides of the HUD.",
+            category = "Render")
+    public static boolean hasPadding;
 
     @Property(type = PropertyType.NUMBER, name = "x", category = "Render", hidden = true)
-    public static int y = 0;
+    public static int x;
+
+    @Property(type = PropertyType.NUMBER, name = "x", category = "Render", hidden = true)
+    public static int y;
 
     public TimerConfig() {
         super(new File("./config/timer.toml"));

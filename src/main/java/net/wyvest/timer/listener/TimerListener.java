@@ -1,5 +1,6 @@
 package net.wyvest.timer.listener;
 
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -26,7 +27,7 @@ public class TimerListener {
     @SubscribeEvent
     public void onRender(RenderGameOverlayEvent.Post event) {
         if (event.type != RenderGameOverlayEvent.ElementType.EXPERIENCE) return;
-        if (TimerConfig.modToggled) {
+        if (TimerConfig.modToggled && Minecraft.getMinecraft().currentScreen == null) {
             UI.drawTimer(secondsPassed);
         }
     }

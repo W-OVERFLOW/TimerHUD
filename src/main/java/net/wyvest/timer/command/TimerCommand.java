@@ -29,7 +29,7 @@ public class TimerCommand extends CommandBase {
             default:
                 MinecraftUtils.sendMessage(ChatColor.GREEN + "[Timer Mod] ", ChatColor.LIGHT_PURPLE + "Unknown argument. Type /timermod help for correct usage.");
                 break;
-            case "gui":
+            case "hud":
                 ModCore.getInstance().getGuiHandler().open(new GUI());
                 break;
             case "help":
