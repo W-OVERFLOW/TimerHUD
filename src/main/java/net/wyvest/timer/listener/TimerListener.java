@@ -27,7 +27,7 @@ public class TimerListener {
     @SubscribeEvent
     public void onRender(RenderGameOverlayEvent.Post event) {
         if (event.type != RenderGameOverlayEvent.ElementType.EXPERIENCE) return;
-        if (TimerConfig.modToggled && Minecraft.getMinecraft().currentScreen == null) {
+        if (TimerConfig.modToggled) {
             UI.drawTimer(secondsPassed);
         }
     }

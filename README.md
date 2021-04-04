@@ -1,6 +1,5 @@
-# forge-mod-template
-so that i can rest in peace
+# Timer Mod
 
-includes modcore, tgmlib, and jsontgm
+A mod that allows you to toggle a timer.
 
-credit to MatthewTGM for some parts of the template
+Credits to 1fxe for the HUD code.
