@@ -1,0 +1,14 @@
+[{
+  "modid": "timer",
+  "name": "Timer Mod",
+  "description": "A mod that allows you to set a timer in Minecraft.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Wyvest"],
+  "credits": "1fxe for the HUD rendering.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}]
