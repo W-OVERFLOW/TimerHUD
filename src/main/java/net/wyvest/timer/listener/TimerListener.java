@@ -1,7 +1,6 @@
 package net.wyvest.timer.listener;
 
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -18,16 +17,15 @@ public class TimerListener {
     public int secondsPassed;
 
     @SubscribeEvent
-    public void worldSwap(WorldEvent.Unload event) {
+    public void onWorldSwap(WorldEvent.Unload event) {
         TimerMod.getInstance().setRunning(false);
         ticks = 0;
         secondsPassed = 0;
     }
 
     @SubscribeEvent
-    public void onRender(RenderGameOverlayEvent.Post event) {
-        if (event.type != RenderGameOverlayEvent.ElementType.EXPERIENCE) return;
-        if (TimerConfig.modToggled) {
+    public void onRender(TickEvent.RenderTickEvent event) {
+        if (TimerConfig.modToggled && event.phase.equals(TickEvent.Phase.END) && Minecraft.getMinecraft().currentScreen == null) {
             UI.drawTimer(secondsPassed);
         }
     }

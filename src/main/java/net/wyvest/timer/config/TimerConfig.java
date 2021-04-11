@@ -6,6 +6,7 @@ import club.sk1er.vigilance.data.PropertyType;
 
 import java.io.File;
 
+@SuppressWarnings("unused")
 public class TimerConfig extends Vigilant {
 
     @Property(
@@ -53,7 +54,7 @@ public class TimerConfig extends Vigilant {
     @Property(type = PropertyType.NUMBER, name = "x", category = "Render", hidden = true)
     public static int x;
 
-    @Property(type = PropertyType.NUMBER, name = "x", category = "Render", hidden = true)
+    @Property(type = PropertyType.NUMBER, name = "y", category = "Render", hidden = true)
     public static int y;
 
     public TimerConfig() {

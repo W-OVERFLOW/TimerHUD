@@ -11,9 +11,10 @@ import net.wyvest.timer.others.Color;
 
 
 /**
- * @author Filip and Wyvest
+ * @author Filip, modified by Wyvest
  * The class that renders the overlay, modified from Resource Pack Display by 1fxe, aka Filip.
  */
+
 public class UI {
     private static final int textPadding = 5;
     public static UI instance;

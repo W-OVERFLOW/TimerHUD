@@ -1,4 +1,3 @@
-
 package net.wyvest.timer.overlay;
 
 import net.minecraft.client.gui.GuiScreen;
@@ -7,7 +6,7 @@ import net.wyvest.timer.config.TimerConfig;
 import java.io.IOException;
 
 /**
- * @author Filip
+ * @author Filip & Wyvest
  */
 public class GUI extends GuiScreen {
     private boolean dragging;
@@ -20,8 +19,8 @@ public class GUI extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        super.drawDefaultBackground();
         updatePos(mouseX, mouseY);
+        UI.drawTimer(1);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
@@ -49,4 +48,17 @@ public class GUI extends GuiScreen {
         super.mouseReleased(mouseX, mouseY, state);
         this.dragging = false;
     }
+
+    @Override
+    public boolean doesGuiPauseGame() {
+        return false;
+    }
+
+    @Override
+    public void onGuiClosed() {
+        super.onGuiClosed();
+        new TimerConfig().markDirty();
+        new TimerConfig().writeData();
+    }
+
 }
