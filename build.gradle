@@ -17,13 +17,13 @@ group= "net.wyvest.timer"
 archivesBaseName = "TimerMod"
 
 sourceCompatibility = targetCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
 
 minecraft {
     version = "1.8.9-11.15.1.2318-1.8.9"
     runDir = "run"
-	
 	replace("@VER@", project.version)
-	
+    makeObfSourceJar = false
     mappings = "stable_22"
 }
 
