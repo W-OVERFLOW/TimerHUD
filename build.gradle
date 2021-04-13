@@ -14,7 +14,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 version = "1.2.0"
 group= "net.wyvest.timer"
-archivesBaseName = "Timer Mod"
+archivesBaseName = "TimerMod"
 
 sourceCompatibility = targetCompatibility = 1.8
 
@@ -37,6 +37,7 @@ dependencies {
 
 
 jar {
+    archiveName = "$baseName.$extension"
     manifest {
         attributes "FMLCorePlugin": "net.wyvest.forge.FMLLoadingPlugin",
                 "ModSide": "CLIENT",
