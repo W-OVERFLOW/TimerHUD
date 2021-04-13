@@ -26,7 +26,7 @@ public class TimerMod {
     private boolean latestVersion;
     private boolean running;
     public KeyBinding keyTimer = new KeyBinding("Toggle MeasureTimer", 25, "MeasureTimer");
-    private final TimerConfig config = new TimerConfig();
+    public final TimerConfig config = new TimerConfig();
 
     public static TimerMod getInstance() {
         if (INSTANCE == null)
@@ -74,5 +74,6 @@ public class TimerMod {
     public boolean isLatestVersion() {
         return latestVersion;
     }
+
 
 }

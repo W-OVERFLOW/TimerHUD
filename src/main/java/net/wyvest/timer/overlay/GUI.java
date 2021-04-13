@@ -1,12 +1,13 @@
 package net.wyvest.timer.overlay;
 
 import net.minecraft.client.gui.GuiScreen;
+import net.wyvest.timer.TimerMod;
 import net.wyvest.timer.config.TimerConfig;
 
 import java.io.IOException;
 
 /**
- * @author Filip & Wyvest
+ * @author Filip, modified by Wyvest
  */
 public class GUI extends GuiScreen {
     private boolean dragging;
@@ -56,9 +57,9 @@ public class GUI extends GuiScreen {
 
     @Override
     public void onGuiClosed() {
+        TimerMod.getInstance().config.markDirty();
+        TimerMod.getInstance().config.writeData();
         super.onGuiClosed();
-        new TimerConfig().markDirty();
-        new TimerConfig().writeData();
     }
 
 }
