@@ -1,5 +1,9 @@
 package net.wyvest.timer.others;
 
+/**
+ * @author Wyvest
+ */
+
 public interface Color {
 
     int WHITE = java.awt.Color.WHITE.getRGB();

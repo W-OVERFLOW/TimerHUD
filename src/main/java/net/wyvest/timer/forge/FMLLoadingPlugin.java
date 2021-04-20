@@ -6,6 +6,10 @@ import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 
 import java.util.Map;
 
+/**
+ * @author Sk1er LLC
+ */
+
 public class FMLLoadingPlugin implements IFMLLoadingPlugin {
     @Override
     public String[] getASMTransformerClass() {

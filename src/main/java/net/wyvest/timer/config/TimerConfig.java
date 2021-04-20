@@ -6,7 +6,10 @@ import club.sk1er.vigilance.data.PropertyType;
 
 import java.io.File;
 
-@SuppressWarnings("unused")
+/**
+ * @author Wyvest
+ */
+
 public class TimerConfig extends Vigilant {
 
     @Property(
@@ -46,10 +49,25 @@ public class TimerConfig extends Vigilant {
     public static boolean renderShadow;
 
     @Property(
-            type = PropertyType.SWITCH, name = "Pad Sides",
-            description = "Pad the sides of the HUD.",
-            category = "Render")
-    public static boolean hasPadding;
+            type = PropertyType.SWITCH, name = "Show in GUIs",
+            description = "Show in GUIs instead of hiding in GUIs.",
+            category = "Render"
+    )
+    public static boolean showinGui;
+
+    @Property(
+            type = PropertyType.SWITCH, name = "Reset Timer When Exiting Worlds",
+            description = "Reset the timer when a world is exited.",
+            category = "General"
+    )
+    public static boolean resetWhenWorldExit;
+
+    @Property(
+            type = PropertyType.SWITCH, name = "Turn on Timer When Entering Worlds",
+            description = "Turn on the timer when entering worlds.",
+            category = "General"
+    )
+    public static boolean turnOnTimerWhenWorldEnter;
 
     @Property(type = PropertyType.NUMBER, name = "x", category = "Render", hidden = true)
     public static int x;

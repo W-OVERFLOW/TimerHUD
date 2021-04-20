@@ -7,7 +7,7 @@ import net.wyvest.timer.config.TimerConfig;
 import java.io.IOException;
 
 /**
- * @author Filip, modified by Wyvest
+ * @author Filip, Wyvest
  */
 public class GUI extends GuiScreen {
     private boolean dragging;

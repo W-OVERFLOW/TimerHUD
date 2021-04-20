@@ -1,6 +1,7 @@
 package net.wyvest.timer.listener;
 
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -11,24 +12,39 @@ import net.wyvest.timer.overlay.UI;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
+/**
+ * @author Wyvest
+ */
 
 public class TimerListener {
     public int ticks = 0;
     public int secondsPassed;
 
     @SubscribeEvent
-    public void onWorldSwap(WorldEvent.Unload event) {
+    public void onWorldLoad(WorldEvent.Load event) {
+        if (!TimerConfig.turnOnTimerWhenWorldEnter) return;
+        TimerMod.getInstance().setRunning(true);
+        ticks = 0;
+        secondsPassed = 0;
+    }
+
+    @SubscribeEvent
+    public void onWorldUnload(WorldEvent.Unload event) {
+        if (!TimerConfig.resetWhenWorldExit) return;
         TimerMod.getInstance().setRunning(false);
         ticks = 0;
         secondsPassed = 0;
     }
 
     @SubscribeEvent
-    public void onRender(TickEvent.RenderTickEvent event) {
-        if (TimerConfig.modToggled && event.phase.equals(TickEvent.Phase.END) && Minecraft.getMinecraft().currentScreen == null) {
-            UI.drawTimer(secondsPassed);
+    protected void onGameOverlayRendered(RenderGameOverlayEvent.Post event) {
+        if (event.type == RenderGameOverlayEvent.ElementType.ALL) {
+            if (TimerConfig.modToggled && (Minecraft.getMinecraft().currentScreen == null || TimerConfig.showinGui) && Minecraft.getMinecraft().thePlayer != null) {
+                UI.drawTimer(secondsPassed);
+            }
         }
     }
+
 
     @SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) {

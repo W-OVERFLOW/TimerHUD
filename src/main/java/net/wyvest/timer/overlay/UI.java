@@ -11,8 +11,7 @@ import net.wyvest.timer.others.Color;
 
 
 /**
- * @author Filip, modified by Wyvest
- * The class that renders the overlay, modified from Resource Pack Display by 1fxe, aka Filip.
+ * @author Filip, Wyvest
  */
 
 public class UI {
@@ -29,13 +28,10 @@ public class UI {
     public static void drawTimer(Integer seconds) {
         GlStateManager.pushMatrix();
         int x = TimerConfig.x;
-        int y = TimerConfig.y;
+        int y = TimerConfig.y + 7;
         int height = 10;
         String text;
         int color;
-        final boolean pad = TimerConfig.hasPadding;
-        int padding = pad ? 5 : 0;
-        int yOffset = 2;
 
         if (!TimerConfig.modToggled) {
             return;
@@ -52,6 +48,7 @@ public class UI {
         }
 
         switch (TimerConfig.textColor) {
+            default:
             case 0:
                 color = Color.WHITE;
                 break;
@@ -91,36 +88,28 @@ public class UI {
             case 12:
                 color = Color.BLUE;
                 break;
-            default:
+            case 13:
                 //honestly i have no idea why but chroma doesn't work if i put it in the interface
                 color = java.awt.Color.HSBtoRGB(System.currentTimeMillis() % 2000L / 2000.0F, 0.8F, 0.8F);
         }
 
         if (TimerConfig.modToggled) {
-            height += 9;
-            if (TimerConfig.renderShadow) {
-                fontRenderer.drawStringWithShadow(text, x + textPadding,
-                        y + yOffset + padding,
-                        color);
-            } else {
                 fontRenderer.drawString(text, x + textPadding,
-                        y + yOffset + padding,
-                        color);
-            }
+                        y,
+                        color, TimerConfig.renderShadow);
 
         }
 
 
         if (TimerConfig.displayBackground) {
             GlStateManager.translate(1.0, 1.0, -100);
-            Gui.drawRect(x - 1, y - 1, x + fontRenderer.getStringWidth(text) + 10, y + height, Integer.MIN_VALUE);
+            Gui.drawRect(x - 1, y - 3, x + fontRenderer.getStringWidth(text) + 8, y + height, Integer.MIN_VALUE);
             GlStateManager.translate(1.0, 1.0, 0);
         }
 
 
         GlStateManager.popMatrix();
     }
-
 
 
 
