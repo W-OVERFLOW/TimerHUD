@@ -14,7 +14,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 version = "1.3.0"
 group= "net.wyvest.timer"
-archivesBaseName = "Timer Mod"
+archivesBaseName = "TimerMod"
 
 sourceCompatibility = targetCompatibility = 1.8
 compileJava.options.encoding = 'UTF-8'
