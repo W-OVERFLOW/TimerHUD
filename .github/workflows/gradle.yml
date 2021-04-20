@@ -24,8 +24,11 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    - name: Launch Forge Workspace and build
-      run: ./gradlew setupCIWorkspace build
+    - name: Launch Forge Workspace
+      run: ./gradlew setupCIWorkspace
+      
+    - name: Build the mod
+      run: ./gradlew build --refresh-dependencies
       
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.3
