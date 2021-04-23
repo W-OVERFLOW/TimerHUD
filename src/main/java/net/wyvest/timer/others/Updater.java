@@ -1,9 +1,15 @@
 package net.wyvest.timer.others;
 
 import club.sk1er.mods.core.gui.notification.Notifications;
+import kotlin.Unit;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.fml.common.versioning.ComparableVersion;
-import net.wyvest.timer.TimerMod;
+import net.wyvest.timer.TimerHUD;
+
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
 
 import static net.minecraftforge.common.ForgeVersion.Status.*;
 
@@ -33,7 +39,7 @@ public class Updater {
 
     public void processUpdateCheckResult() {
         ComparableVersion current = new ComparableVersion(Constants.VER);
-        ComparableVersion latest = new ComparableVersion(TimerMod.getInstance().getOnlineData().version);
+        ComparableVersion latest = new ComparableVersion(TimerHUD.getInstance().getOnlineData().version);
 
         int versionDifference = latest.compareTo(current);
         if (versionDifference == 0) {
@@ -44,8 +50,27 @@ public class Updater {
             status = OUTDATED;
         }
         if (status == OUTDATED) {
-            Notifications.INSTANCE.pushNotification("Timer Mod", "Your version of Timer Mod is outdated. Please update to the latest version.");
+            Notifications.INSTANCE.pushNotification("TimerHUD", "Your version of TimerHUD is outdated. Please update to the latest version by clicking here.", this::browseDownloadPage);
         }
     }
 
+    private Unit browseDownloadPage() {
+        try {
+            Desktop.getDesktop().browse(this.URLtoURI(new URL("https://wyvest.net/timerhud")));
+            return Unit.INSTANCE;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    private URI URLtoURI(URL url) {
+        try {
+            return url.toURI();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

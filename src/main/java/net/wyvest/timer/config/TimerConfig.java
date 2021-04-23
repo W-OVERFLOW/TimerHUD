@@ -76,7 +76,7 @@ public class TimerConfig extends Vigilant {
     public static int y;
 
     public TimerConfig() {
-        super(new File("./config/timer.toml"));
+        super(new File("./config/timerhud.toml"));
         initialize();
     }
 }

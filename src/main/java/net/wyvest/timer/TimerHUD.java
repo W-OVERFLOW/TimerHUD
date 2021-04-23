@@ -23,23 +23,25 @@ import net.wyvest.timer.others.Updater;
 /**
  * @author Wyvest
  */
+
 @Getter
 @Mod(name = Constants.NAME, version = Constants.VER, modid = Constants.ID)
-public class TimerMod {
+public class TimerHUD {
 
     private final APICaller apiCaller;
     @Setter @Getter private boolean running;
-    public KeyBinding keyTimer = new KeyBinding("Toggle Timer", 25, "Timer Mod");
+    public KeyBinding keyTimer = new KeyBinding("Toggle Timer", 25, "TimerHUD");
     public final TimerConfig config = new TimerConfig();
     @Setter @Getter private JsonResponse onlineData;
-    @Getter private static TimerMod instance;
-    private Updater updater;
+    @Getter private static TimerHUD instance;
+    private final Updater updater;
 
-    public TimerMod() {
+    public TimerHUD() {
         instance = this;
         apiCaller = new APICaller();
         updater = new Updater();
     }
+
     @Mod.EventHandler
     protected void onPreInit(FMLPreInitializationEvent event) {}
 

@@ -1,7 +1,7 @@
 package net.wyvest.timer.overlay;
 
 import net.minecraft.client.gui.GuiScreen;
-import net.wyvest.timer.TimerMod;
+import net.wyvest.timer.TimerHUD;
 import net.wyvest.timer.config.TimerConfig;
 
 import java.io.IOException;
@@ -21,7 +21,8 @@ public class GUI extends GuiScreen {
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         updatePos(mouseX, mouseY);
-        UI.drawTimer(1);
+        HUD.drawTimer(1);
+
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
@@ -57,8 +58,8 @@ public class GUI extends GuiScreen {
 
     @Override
     public void onGuiClosed() {
-        TimerMod.getInstance().config.markDirty();
-        TimerMod.getInstance().config.writeData();
+        TimerHUD.getInstance().config.markDirty();
+        TimerHUD.getInstance().config.writeData();
         super.onGuiClosed();
     }
 

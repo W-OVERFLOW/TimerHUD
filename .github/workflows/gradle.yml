@@ -28,9 +28,9 @@ jobs:
       run: ./gradlew setupCIWorkspace
       
     - name: Build the mod
-      run: ./gradlew build --refresh-dependencies
+      run: ./gradlew build
       
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.3
       with:
-        path: ./build/libs/TimerMod.jar
+        path: ./build/libs/TimerHUD.jar

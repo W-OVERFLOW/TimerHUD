@@ -3,28 +3,38 @@ buildscript {
         jcenter()
         maven {
             name = "forge"
-            url = "http://files.minecraftforge.net/maven"
+            url = "https://maven.minecraftforge.net/"
         }
+        flatDir dirs: 'libs'
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+        classpath "net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT"
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.3.0"
-group= "net.wyvest.timer"
-archivesBaseName = "TimerMod"
+version = modVersion
+group = modGroup
+archivesBaseName = modBaseName
 
 sourceCompatibility = targetCompatibility = 1.8
 compileJava.options.encoding = 'UTF-8'
 
 minecraft {
-    version = "1.8.9-11.15.1.2318-1.8.9"
+    version = project.forgeVersion
     runDir = "run"
 	replace("@VER@", project.version)
+    mappings = project.mcpVersion
     makeObfSourceJar = false
-    mappings = "stable_22"
+}
+
+// Required because Srg2Source depends on a snapshot of JDT that is no longer published on forge maven
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        if (details.requested.group == 'org.eclipse.jdt' && details.requested.name == 'org.eclipse.jdt.core') {
+            details.useVersion '3.10.0'
+        }
+    }
 }
 
 repositories {
@@ -36,29 +46,32 @@ dependencies {
     provided files("libs/modcore.jar")
 }
 
-
 jar {
     archiveName = "$baseName.$extension"
     manifest {
-        attributes "FMLCorePlugin": "net.wyvest.forge.FMLLoadingPlugin",
+        attributes "FMLCorePlugin": "net.wyvest.timer.forge.FMLLoadingPlugin",
                 "ModSide": "CLIENT",
                 "FMLCorePluginContainsFMLMod": "Yes, yes it does"
     }
 }
 
-processResources
-{
+processResources {
+    // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
 
+    // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-                
-        expand 'version':project.version, 'mcversion':project.minecraft.version
-    }
-        
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
-}
+        include "mcmod.info", "LICENSE.txt"
 
+        // replace version and mcversion
+        expand "version": project.version, "mcversion": project.minecraft.version
+    }
+
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude "mcmod.info"
+    }
+
+    rename '(.+_at.cfg)', 'META-INF/$1'
+}

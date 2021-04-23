@@ -1,11 +1,12 @@
 
 package net.wyvest.timer.overlay;
 
+import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
-import net.wyvest.timer.TimerMod;
+import net.wyvest.timer.TimerHUD;
 import net.wyvest.timer.config.TimerConfig;
 import net.wyvest.timer.others.Color;
 
@@ -13,15 +14,15 @@ import net.wyvest.timer.others.Color;
 /**
  * @author Filip, Wyvest
  */
-
-public class UI {
+@Getter
+public class HUD {
     private static final int textPadding = 5;
-    public static UI instance;
+    @Getter public static HUD instance;
     private static final Minecraft mc = Minecraft.getMinecraft();
     private static final FontRenderer fontRenderer = mc.fontRendererObj;
 
 
-    public UI() {
+    public HUD() {
         instance = this;
     }
 
@@ -37,14 +38,14 @@ public class UI {
             return;
         }
 
-        if (!TimerMod.getInstance().isRunning()) {
+        if (!TimerHUD.getInstance().isRunning()) {
             if (TimerConfig.renderNothing) {
                 text = "";
             } else {
-                text = "No timer running";
+                text = "0s";
             }
         } else {
-            text = String.valueOf(seconds);
+            text = seconds + "s";
         }
 
         switch (TimerConfig.textColor) {

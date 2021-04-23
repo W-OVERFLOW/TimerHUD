@@ -4,7 +4,7 @@ import club.sk1er.mods.core.util.Multithreading;
 import com.google.gson.Gson;
 import lombok.Getter;
 import lombok.Setter;
-import net.wyvest.timer.TimerMod;
+import net.wyvest.timer.TimerHUD;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -39,10 +39,10 @@ public class APICaller {
     public void pullOnlineData() {
         Multithreading.runAsync(() -> {
             try {
-                URL url = new URL("https://raw.githubusercontent.com/wyvest/wyvest.net/master/timermod.json");
+                URL url = new URL("https://raw.githubusercontent.com/wyvest/wyvest.net/master/timerhud.json");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
-                connection.setRequestProperty("User-Agent", "TimerMod/" + Constants.VER);
+                connection.setRequestProperty("User-Agent", "TimerHUD/" + Constants.VER);
 
                 StringBuilder response = new StringBuilder();
                 try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
@@ -53,9 +53,9 @@ public class APICaller {
                 }
                 connection.disconnect();
 
-                TimerMod.getInstance().setOnlineData(new Gson().fromJson(response.toString(), JsonResponse.class));
+                TimerHUD.getInstance().setOnlineData(new Gson().fromJson(response.toString(), JsonResponse.class));
 
-                TimerMod.getInstance().getUpdater().processUpdateCheckResult();
+                TimerHUD.getInstance().getUpdater().processUpdateCheckResult();
             } catch (Exception ignored) {}
         });
     }
