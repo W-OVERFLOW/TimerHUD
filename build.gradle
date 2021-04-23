@@ -5,14 +5,14 @@ buildscript {
             name = "forge"
             url = "https://maven.minecraftforge.net/"
         }
+	maven {
+            name = "JitPack"
+            url = "https://jitpack.io/"
+        }
         flatDir dirs: 'libs'
     }
     dependencies {
-<<<<<<< HEAD
-        classpath "com.github.asbyth:ForgeGradle:581a86dcbe"
-=======
-        classpath "net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT"
->>>>>>> parent of c494514 (Fix gradle by using asbyth's forgegradle fork)
+        classpath "com.github.asbyth:ForgeGradle:f6500bf402"
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
