@@ -58,8 +58,8 @@ public class GUI extends GuiScreen {
 
     @Override
     public void onGuiClosed() {
-        TimerHUD.getInstance().config.markDirty();
-        TimerHUD.getInstance().config.writeData();
+        TimerHUD.INSTANCE.config.markDirty();
+        TimerHUD.INSTANCE.config.writeData();
         super.onGuiClosed();
     }
 

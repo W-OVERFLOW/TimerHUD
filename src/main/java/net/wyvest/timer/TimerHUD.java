@@ -1,9 +1,7 @@
 package net.wyvest.timer;
 
-import club.sk1er.modcore.ModCoreInstaller;
 import lombok.Getter;
 import lombok.Setter;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
@@ -12,13 +10,20 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.wyvest.lib.WyLib;
+import net.wyvest.lib.util.Notifications;
+import net.wyvest.lib.util.betterkeybinds.KeyBind;
+import net.wyvest.lib.util.betterkeybinds.KeyBindManager;
 import net.wyvest.timer.command.TimerCommand;
 import net.wyvest.timer.config.TimerConfig;
+import net.wyvest.timer.keybind.TimerKeybind;
 import net.wyvest.timer.listener.TimerListener;
-import net.wyvest.timer.others.APICaller;
 import net.wyvest.timer.others.Constants;
 import net.wyvest.timer.others.JsonResponse;
-import net.wyvest.timer.others.Updater;
+import net.wyvest.timer.others.VersionChecker;
+
+import java.awt.*;
+import java.net.URI;
 
 /**
  * @author Wyvest
@@ -28,27 +33,22 @@ import net.wyvest.timer.others.Updater;
 @Mod(name = Constants.NAME, version = Constants.VER, modid = Constants.ID)
 public class TimerHUD {
 
-    private final APICaller apiCaller;
     @Setter @Getter private boolean running;
-    public KeyBinding keyTimer = new KeyBinding("Toggle Timer", 25, "TimerHUD");
     public final TimerConfig config = new TimerConfig();
     @Setter @Getter private JsonResponse onlineData;
-    @Getter private static TimerHUD instance;
-    private final Updater updater;
 
-    public TimerHUD() {
-        instance = this;
-        apiCaller = new APICaller();
-        updater = new Updater();
+    @Mod.Instance(Constants.ID)
+    public static TimerHUD INSTANCE;
+
+    @Mod.EventHandler
+    protected void onPreInit(FMLPreInitializationEvent event) {
+        WyLib.getInstance().onForgePreInit();
+        VersionChecker.getVersion();
     }
 
     @Mod.EventHandler
-    protected void onPreInit(FMLPreInitializationEvent event) {}
-
-    @Mod.EventHandler
     protected void onInit(FMLInitializationEvent event) {
-        ModCoreInstaller.initializeModCore(Minecraft.getMinecraft().mcDataDir);
-        ClientRegistry.registerKeyBinding(this.keyTimer);
+        KeyBindManager.register(new TimerKeybind());
         MinecraftForge.EVENT_BUS.register(new TimerListener());
         ClientCommandHandler.instance.registerCommand(new TimerCommand());
         config.preload();
@@ -56,11 +56,19 @@ public class TimerHUD {
 
     @Mod.EventHandler
     protected void onPostInit(FMLPostInitializationEvent event) {
-        apiCaller.pullOnlineData();
+        if (Double.parseDouble(VersionChecker.version) > Double.parseDouble(Constants.VER)) Notifications.push("TimerHUD", "Your version of TimerHUD is outdated. Please update to the latest version by clicking here.", this::openTab);
+    }
+
+    void openTab() {
+        try {
+            Desktop.getDesktop().browse(URI.create("https://wyvest.net/checker"));
+        } catch (Exception e) {e.printStackTrace();}
     }
 
     public void toggleRunning() {
         running = !running;
+        TimerListener.ticks = 0;
+        TimerListener.secondsPassed = 0;
     }
 
 

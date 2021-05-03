@@ -6,9 +6,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
+import net.wyvest.lib.util.ChromaUtils;
 import net.wyvest.timer.TimerHUD;
 import net.wyvest.timer.config.TimerConfig;
-import net.wyvest.timer.others.Color;
 
 
 /**
@@ -16,7 +16,6 @@ import net.wyvest.timer.others.Color;
  */
 @Getter
 public class HUD {
-    private static final int textPadding = 5;
     @Getter public static HUD instance;
     private static final Minecraft mc = Minecraft.getMinecraft();
     private static final FontRenderer fontRenderer = mc.fontRendererObj;
@@ -32,13 +31,12 @@ public class HUD {
         int y = TimerConfig.y + 7;
         int height = 10;
         String text;
-        int color;
 
         if (!TimerConfig.modToggled) {
             return;
         }
 
-        if (!TimerHUD.getInstance().isRunning()) {
+        if (!TimerHUD.INSTANCE.isRunning()) {
             if (TimerConfig.renderNothing) {
                 text = "";
             } else {
@@ -48,57 +46,17 @@ public class HUD {
             text = seconds + "s";
         }
 
-        switch (TimerConfig.textColor) {
-            default:
-            case 0:
-                color = Color.WHITE;
-                break;
-            case 1:
-                color = Color.LIGHT_GRAY;
-                break;
-            case 2:
-                color = Color.GRAY;
-                break;
-            case 3:
-                color = Color.DARK_GRAY;
-                break;
-            case 4:
-                color = Color.BLACK;
-                break;
-            case 5:
-                color = Color.RED;
-                break;
-            case 6:
-                color = Color.PINK;
-                break;
-            case 7:
-                color = Color.ORANGE;
-                break;
-            case 8:
-                color = Color.YELLOW;
-                break;
-            case 9:
-                color = Color.GREEN;
-                break;
-            case 10:
-                color = Color.MAGENTA;
-                break;
-            case 11:
-                color = Color.CYAN;
-                break;
-            case 12:
-                color = Color.BLUE;
-                break;
-            case 13:
-                //honestly i have no idea why but chroma doesn't work if i put it in the interface
-                color = java.awt.Color.HSBtoRGB(System.currentTimeMillis() % 2000L / 2000.0F, 0.8F, 0.8F);
-        }
+
 
         if (TimerConfig.modToggled) {
-                fontRenderer.drawString(text, x + textPadding,
+            if (TimerConfig.oneColorChroma) {
+                ChromaUtils.drawChromaString(fontRenderer, text, Float.parseFloat(String.valueOf(x + 5)), Float.parseFloat(String.valueOf(y)), TimerConfig.renderShadow);
+            }else {
+                fontRenderer.drawString(text, x + 5,
                         y,
-                        color, TimerConfig.renderShadow);
+                        TimerConfig.chroma ? ChromaUtils.timeChroma() : TimerConfig.color.getRGB(), TimerConfig.renderShadow);
 
+            }
         }
 
 

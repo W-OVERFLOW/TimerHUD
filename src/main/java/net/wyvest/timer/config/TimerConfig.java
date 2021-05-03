@@ -4,7 +4,9 @@ import club.sk1er.vigilance.Vigilant;
 import club.sk1er.vigilance.data.Property;
 import club.sk1er.vigilance.data.PropertyType;
 
+import java.awt.*;
 import java.io.File;
+
 
 /**
  * @author Wyvest
@@ -27,12 +29,25 @@ public class TimerConfig extends Vigilant {
     public static boolean renderNothing;
 
     @Property(
-            type = PropertyType.SELECTOR, name = "Text Color",
+            type = PropertyType.COLOR, name = "Text Color",
             description = "Change the text color for the HUD.",
-            category = "Render",
-            options = {"White", "Light Gray", "Gray", "Dark Gray", "Black", "Red", "Pink", "Orange", "Yellow", "Green", "Magenta", "Cyan", "Blue", "Chroma"}
+            category = "Render", subcategory = "Color"
     )
-    public static int textColor;
+    public static Color color = Color.WHITE;
+
+    @Property(
+            type = PropertyType.SWITCH, name = "Turn on Chroma",
+            description = "Turn on Chroma. This overrides Text Color.",
+            category = "Render", subcategory = "Color"
+    )
+    public static boolean chroma;
+
+    @Property(
+            type = PropertyType.SWITCH, name = "Make Chroma Text One Color",
+            description = "Make the Chroma text one color that changes instead of each character being a different color.",
+            category = "Render", subcategory = "Color"
+    )
+    public static boolean oneColorChroma;
 
     @Property(
             type = PropertyType.SWITCH, name = "Display Background",
