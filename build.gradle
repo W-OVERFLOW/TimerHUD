@@ -97,7 +97,6 @@ shadowJar {
 
 reobf {
     shadowJar {
-        classpath = sourceSets.main.compileClasspath
         mappingType = "SEARGE"
     }
 }
@@ -112,4 +111,4 @@ tasks.moveResources.dependsOn processResources
 tasks.classes.dependsOn moveResources
 //end asbyth cool resource fix
 
-tasks.reobfJar.dependsOn(shadowJar)
+tasks.reobfJar.dependsOn(tasks.shadowJar)
