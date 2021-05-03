@@ -102,6 +102,12 @@ reobf {
     }
 }
 
+sourceSets {
+    main {
+        output.resourcesDir = output.classesDir
+    }
+}
+
 tasks.moveResources.dependsOn processResources
 tasks.classes.dependsOn moveResources
 //end asbyth cool resource fix
