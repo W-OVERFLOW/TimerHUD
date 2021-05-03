@@ -92,7 +92,7 @@ shadowJar {
 
     exclude "dummyThing"
     exclude "club/sk1er/vigilance/example"
-
+    exclue "module-info.class"
 }
 
 reobf {
