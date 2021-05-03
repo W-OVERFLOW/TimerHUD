@@ -13,10 +13,12 @@ buildscript {
     }
     dependencies {
         classpath "com.github.asbyth:ForgeGradle:86b2392"
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72'
         classpath "com.github.jengelman.gradle.plugins:shadow:6.1.0"
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'kotlin'
 apply plugin: "com.github.johnrengelman.shadow"
 
 version = modVersion
@@ -41,6 +43,7 @@ repositories {
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72")
     implementation 'com.github.wyvest:WyLib:0d5efa2c9a'
     implementation("club.sk1er:Vigilance:100-10809-SNAPSHOT")
     implementation('org.projectlombok:lombok:1.18.16')
@@ -48,8 +51,8 @@ dependencies {
 }
 
 jar {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     archiveName = "$baseName.$extension"
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 processResources {
@@ -83,13 +86,14 @@ task moveResources {
 
 shadowJar {
 	dependencies {
-        	include(dependency('com.github.wyvest:WyLib:0d5efa2c9a'))
+        include(dependency('com.github.wyvest:WyLib:0d5efa2c9a'))
 		include(dependency('club.sk1er:Vigilance:100-10809-SNAPSHOT'))
 		include(dependency('org.projectlombok:lombok:1.18.16'))
     	}
-    archiveFileName = jar.archiveFileName
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    archiveName = "$baseName.$extension"
+    classifier = ''
     exclude "dummyThing"
     exclude "club/sk1er/vigilance/example"
     exclude "module-info.class"

@@ -5,7 +5,7 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.wyvest.lib.util.ChatHandler;
 import net.wyvest.lib.util.GuiHelper;
-import net.wyvest.timer.TimerHUD;
+import net.wyvest.timer.config.TimerConfig;
 import net.wyvest.timer.overlay.GUI;
 
 public class TimerCommand extends CommandBase {
@@ -22,7 +22,7 @@ public class TimerCommand extends CommandBase {
     @Override
     public void processCommand(ICommandSender sender, String[] args) {
         if (args.length <= 0) {
-            GuiHelper.open(TimerHUD.INSTANCE.getConfig().gui());
+            GuiHelper.open(TimerConfig.INSTANCE.gui());
             return;
         }
         switch (args[0].toLowerCase()) {
@@ -37,7 +37,7 @@ public class TimerCommand extends CommandBase {
                 ChatHandler.sendMessage(ChatColor.GREEN + "[TimerHUD] " + ChatColor.LIGHT_PURPLE + "Command Help\n" + "/timerhud - Open Config Menu\n" + "/timerhud help - Shows help for command usage\n" + "/timerhud hud or /timerhud gui - Opens a GUI to configure where the timer is rendered.\n" + "/timerhud config - Open Config Menu");
                 break;
             case "config":
-                GuiHelper.open(TimerHUD.INSTANCE.getConfig().gui());
+                GuiHelper.open(TimerConfig.INSTANCE.gui());
         }
     }
 

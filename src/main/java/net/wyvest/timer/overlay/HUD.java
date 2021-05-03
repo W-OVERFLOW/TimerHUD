@@ -49,7 +49,7 @@ public class HUD {
 
 
         if (TimerConfig.modToggled) {
-            if (TimerConfig.oneColorChroma) {
+            if (!TimerConfig.oneColorChroma && TimerConfig.chroma) {
                 ChromaUtils.drawChromaString(fontRenderer, text, Float.parseFloat(String.valueOf(x + 5)), Float.parseFloat(String.valueOf(y)), TimerConfig.renderShadow);
             }else {
                 fontRenderer.drawString(text, x + 5,
