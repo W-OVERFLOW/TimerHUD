@@ -82,6 +82,11 @@ task moveResources {
 }
 
 shadowJar {
+	dependencies {
+        	include(dependency('com.github.wyvest:WyLib:0d5efa2c9a'))
+		include(dependency('club.sk1er:Vigilance:100-10809-SNAPSHOT'))
+		include(dependency('org.projectlombok:lombok:1.18.16'))
+    	}
     archiveFileName = jar.archiveFileName
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
