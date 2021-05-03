@@ -41,7 +41,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.wyvest:WyLib:4af12ddd97'
+    implementation 'com.github.wyvest:WyLib:0d5efa2c9a'
     implementation("club.sk1er:Vigilance:100-10809-SNAPSHOT")
     implementation('org.projectlombok:lombok:1.18.16')
     annotationProcessor('org.projectlombok:lombok:1.18.16')
