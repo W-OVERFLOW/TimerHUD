@@ -91,6 +91,7 @@ shadowJar {
 		include(dependency('org.projectlombok:lombok:1.18.16'))
     	}
 
+    relocate 'club.sk1er.vigilance', 'net.wyvest.vigilance'
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     archiveName = "$baseName.$extension"
     classifier = ''
