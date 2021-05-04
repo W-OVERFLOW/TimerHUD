@@ -28,6 +28,13 @@ archivesBaseName = modBaseName
 sourceCompatibility = targetCompatibility = 1.8
 compileJava.options.encoding = 'UTF-8'
 
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+        freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+    }
+}
+
 minecraft {
     version = project.forgeVersion
     runDir = "run"
@@ -89,14 +96,15 @@ shadowJar {
         include(dependency('com.github.wyvest:WyLib:0d5efa2c9a'))
 		include(dependency('club.sk1er:Vigilance:100-10809-SNAPSHOT'))
 		include(dependency('org.projectlombok:lombok:1.18.16'))
+        include(dependency('club.sk1er:UniversalCraft:98-10809-SNAPSHOT'))
+        include(dependency('club.sk1er:Elementa:255-10809-SNAPSHOT'))
     	}
 
-    relocate 'club.sk1er', 'wyvest.sk1er'
+    relocate("club.sk1er", "wyvest.sk1er")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     archiveName = "$baseName.$extension"
     classifier = ''
     exclude "dummyThing"
-    exclude "club/sk1er/vigilance/example"
     exclude "module-info.class"
 }
 

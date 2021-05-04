@@ -2,12 +2,14 @@
 package net.wyvest.timer.config
 
 import club.sk1er.vigilance.Vigilant
+import club.sk1er.vigilance.data.Category
 import club.sk1er.vigilance.data.Property
 import club.sk1er.vigilance.data.PropertyType
+import club.sk1er.vigilance.data.SortingBehavior
 import java.awt.Color
 import java.io.File
 
-object TimerConfig : Vigilant(File("./config/timerhud.toml"))  {
+object TimerConfig : Vigilant(File("./config/timerhud.toml"), "TimerHUD", sortingBehavior = ConfigSorting)  {
 
     @Property(type = PropertyType.TEXT, name = "Info", description = "You are using TimerHUD Version 1.5.1, made by Wyvest.", category = "General")
     var paragraph = ""
@@ -74,5 +76,22 @@ object TimerConfig : Vigilant(File("./config/timerhud.toml"))  {
 
     @Property(type = PropertyType.TEXT, name = "chachy", description = "For fixing parts of the build.gradle in v1.5.0.", category = "Credits")
     var credits4 = ""
+
+    init {
+        ::oneColorChroma dependsOn ::chroma
+        initialize()
+    }
+
+    private object ConfigSorting : SortingBehavior() {
+        override fun getCategoryComparator(): Comparator<in Category> {
+            return Comparator { o1, o2 ->
+                if (o1.name == "General") return@Comparator -1
+                if (o2.name == "General") return@Comparator 1
+                else compareValuesBy(o2, o1) {
+                    it.name
+                }
+            }
+        }
+    }
 
 }

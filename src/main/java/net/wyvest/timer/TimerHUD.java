@@ -27,11 +27,11 @@ import java.net.URI;
  */
 
 @Getter
-@Mod(name = "TimerHUD", version = "1.5.1", modid = "timer")
+@Mod(name = "TimerHUD", version = "1.5.2", modid = "timer")
 public class TimerHUD {
 
     public String modName = "TimerHUD";
-    public String version = "1.5.1";
+    public String version = "1.5.2";
     public String modId = "timer";
     @Setter @Getter private boolean running;
     @Setter @Getter private JsonResponse onlineData;
