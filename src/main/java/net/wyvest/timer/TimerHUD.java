@@ -27,7 +27,7 @@ import java.net.URI;
 public class TimerHUD {
 
     public static final String modName = "TimerHUD";
-    public static final String version = "2.0.0";
+    public static final String version = "2.0.1";
     public static final String modId = "timer";
 
     @Mod.EventHandler
@@ -48,7 +48,9 @@ public class TimerHUD {
 
     @Mod.EventHandler
     protected void onPostInit(FMLPostInitializationEvent event) {
-        if (!VersionChecker.version.matches(version)) Notifications.push("TimerHUD", "Your version of TimerHUD is outdated. Please update to the latest version by clicking here.", this::openTab);
+        try {
+            if (!VersionChecker.version.matches(version)) Notifications.push("TimerHUD", "Your version of TimerHUD is outdated. Please update to the latest version by clicking here.", this::openTab);
+        } catch (Exception e) {e.printStackTrace();}
     }
 
     void openTab() {
