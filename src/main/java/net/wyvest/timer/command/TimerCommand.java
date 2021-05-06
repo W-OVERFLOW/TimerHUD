@@ -8,6 +8,10 @@ import net.wyvest.lib.util.GuiHelper;
 import net.wyvest.timer.config.TimerConfig;
 import net.wyvest.timer.overlay.GUI;
 
+/**
+ * @author Wyvest
+ */
+
 public class TimerCommand extends CommandBase {
     @Override
     public String getCommandName() {
@@ -22,7 +26,7 @@ public class TimerCommand extends CommandBase {
     @Override
     public void processCommand(ICommandSender sender, String[] args) {
         if (args.length <= 0) {
-            GuiHelper.open(TimerConfig.INSTANCE.gui());
+            GuiHelper.open(new GUI());
             return;
         }
         switch (args[0].toLowerCase()) {

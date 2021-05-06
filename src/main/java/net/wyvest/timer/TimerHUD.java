@@ -1,8 +1,7 @@
 package net.wyvest.timer;
 
+import club.sk1er.mods.core.universal.UDesktop;
 import club.sk1er.vigilance.Vigilance;
-import lombok.Getter;
-import lombok.Setter;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -16,33 +15,26 @@ import net.wyvest.timer.command.TimerCommand;
 import net.wyvest.timer.config.TimerConfig;
 import net.wyvest.timer.keybind.TimerKeybind;
 import net.wyvest.timer.listener.TimerListener;
-import net.wyvest.timer.others.JsonResponse;
 import net.wyvest.timer.others.VersionChecker;
 
-import java.awt.*;
 import java.net.URI;
 
 /**
  * @author Wyvest
  */
 
-@Getter
-@Mod(name = "TimerHUD", version = "1.5.2", modid = "timer")
+@Mod(name = TimerHUD.modName, version = TimerHUD.version, modid = TimerHUD.modId)
 public class TimerHUD {
 
-    public String modName = "TimerHUD";
-    public String version = "1.5.2";
-    public String modId = "timer";
-    @Setter @Getter private boolean running;
-    @Setter @Getter private JsonResponse onlineData;
-
-    @Mod.Instance()
-    public static TimerHUD INSTANCE;
+    public static final String modName = "TimerHUD";
+    public static final String version = "2.0.0";
+    public static final String modId = "timer";
 
     @Mod.EventHandler
     protected void onPreInit(FMLPreInitializationEvent event) {
         WyLib.getInstance().onForgePreInit();
         VersionChecker.getVersion();
+        Timer.instance.setTimer(false);
     }
 
     @Mod.EventHandler
@@ -61,15 +53,8 @@ public class TimerHUD {
 
     void openTab() {
         try {
-            Desktop.getDesktop().browse(URI.create("https://wyvest.net/checker"));
+            UDesktop.browse(URI.create("https://wyvest.net/timerhud"));
         } catch (Exception e) {e.printStackTrace();}
     }
-
-    public void toggleRunning() {
-        running = !running;
-        TimerListener.ticks = 0;
-        TimerListener.secondsPassed = 0;
-    }
-
 
 }

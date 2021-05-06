@@ -1,8 +1,12 @@
 package net.wyvest.timer.keybind;
 
 import net.wyvest.lib.util.betterkeybinds.KeyBind;
-import net.wyvest.timer.TimerHUD;
+import net.wyvest.timer.Timer;
 import org.lwjgl.input.Keyboard;
+
+/**
+ * @author Wyvest
+ */
 
 public class TimerKeybind extends KeyBind {
 
@@ -11,7 +15,7 @@ public class TimerKeybind extends KeyBind {
     }
     @Override
     public void press() {
-        TimerHUD.INSTANCE.toggleRunning();
+        Timer.instance.toggleTimer();
     }
 
     @Override

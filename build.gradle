@@ -53,8 +53,6 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72")
     implementation 'com.github.wyvest:WyLib:0d5efa2c9a'
     implementation("club.sk1er:Vigilance:100-10809-SNAPSHOT")
-    implementation('org.projectlombok:lombok:1.18.16')
-    annotationProcessor('org.projectlombok:lombok:1.18.16')
 }
 
 jar {
@@ -95,7 +93,6 @@ shadowJar {
 	dependencies {
         include(dependency('com.github.wyvest:WyLib:0d5efa2c9a'))
 		include(dependency('club.sk1er:Vigilance:100-10809-SNAPSHOT'))
-		include(dependency('org.projectlombok:lombok:1.18.16'))
         include(dependency('club.sk1er:UniversalCraft:98-10809-SNAPSHOT'))
         include(dependency('club.sk1er:Elementa:255-10809-SNAPSHOT'))
     	}

@@ -1,22 +1,21 @@
 
 package net.wyvest.timer.overlay;
 
-import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.wyvest.lib.util.ChromaUtils;
-import net.wyvest.timer.TimerHUD;
+import net.wyvest.timer.Timer;
 import net.wyvest.timer.config.TimerConfig;
 
 
 /**
  * @author Filip, Wyvest
  */
-@Getter
+
 public class HUD {
-    @Getter public static HUD instance;
+    public static HUD instance;
     private static final Minecraft mc = Minecraft.getMinecraft();
     private static final FontRenderer fontRenderer = mc.fontRendererObj;
 
@@ -25,7 +24,7 @@ public class HUD {
         instance = this;
     }
 
-    public static void drawTimer(Integer seconds) {
+    public static void drawTimer(int seconds) {
         GlStateManager.pushMatrix();
         int x = TimerConfig.x;
         int y = TimerConfig.y + 7;
@@ -36,7 +35,7 @@ public class HUD {
             return;
         }
 
-        if (!TimerHUD.INSTANCE.isRunning()) {
+        if (!Timer.instance.running) {
             if (TimerConfig.renderNothing) {
                 text = "";
             } else {
@@ -49,7 +48,7 @@ public class HUD {
 
 
         if (TimerConfig.modToggled) {
-            if (!TimerConfig.oneColorChroma && TimerConfig.chroma) {
+            if (TimerConfig.chroma) {
                 ChromaUtils.drawChromaString(fontRenderer, text, Float.parseFloat(String.valueOf(x + 5)), Float.parseFloat(String.valueOf(y)), TimerConfig.renderShadow);
             }else {
                 fontRenderer.drawString(text, x + 5,
