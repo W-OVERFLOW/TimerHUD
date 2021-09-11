@@ -1,14 +1,18 @@
-[{
-  "modid": "timer",
-  "name": "TimerHUD",
-  "description": "A mod that allows you to set a timer in Minecraft.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["Wyvest"],
-  "credits": "",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
-}]
+[
+  {
+    "modid": "timerhud",
+    "name": "TimerHUD",
+    "description": "Set a timer ingame.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "Queffe"
+    ],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]

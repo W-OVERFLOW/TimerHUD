@@ -1,65 +1,64 @@
-buildscript {
-    repositories {
-        jcenter()
-        maven {
-            name = "forge"
-            url = "https://maven.minecraftforge.net/"
-        }
-	maven {
-            name = "JitPack"
-            url = "https://jitpack.io/"
-        }
-        flatDir dirs: 'libs'
-    }
-    dependencies {
-        classpath "com.github.asbyth:ForgeGradle:86b2392"
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72'
-        classpath "com.github.jengelman.gradle.plugins:shadow:6.1.0"
-    }
+plugins {
+    id "java"
+    id "com.github.johnrengelman.shadow" version "6.1.0"
+    id "net.minecraftforge.gradle.forge" version "86b2392"
+    id "org.jetbrains.kotlin.jvm" version "1.5.30"
 }
-apply plugin: 'net.minecraftforge.gradle.forge'
-apply plugin: 'kotlin'
-apply plugin: "com.github.johnrengelman.shadow"
 
-version = modVersion
-group = modGroup
-archivesBaseName = modBaseName
+version = "3.0.0"
+group = "xyz.queffe"
+archivesBaseName = "TimerHUD"
 
 sourceCompatibility = targetCompatibility = 1.8
-compileJava.options.encoding = 'UTF-8'
-
-compileKotlin {
-    kotlinOptions {
-        jvmTarget = "1.8"
-        freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
-    }
-}
+compileJava.options.encoding = "UTF-8"
 
 minecraft {
-    version = project.forgeVersion
+    version = "1.8.9-11.15.1.2318-1.8.9"
     runDir = "run"
-	replace("@VER@", project.version)
-    mappings = project.mcpVersion
+    mappings = "stable_22"
     makeObfSourceJar = false
+    clientJvmArgs += '-Dfml.coreMods.load=xyz.queffe.timerhud.tweaker.TimerHUDLoadingPlugin'
+    clientRunArgs += '--tweakClass gg.essential.loader.stage0.EssentialSetupTweaker'
+}
+
+configurations {
+    // Creates an extra configuration that implements `implementation` to be used later as the configuration that shades libraries
+    include
+    implementation.extendsFrom(include)
 }
 
 repositories {
-    jcenter()
-    maven { url "https://repo.sk1er.club/repository/maven-public/" }
-    maven { url 'https://jitpack.io' }
+    mavenCentral()
+    maven { url 'https://repo.sk1er.club/repository/maven-releases/' }
+    maven { url 'https://jitpack.io/' }
+    maven { url 'https://repo.spongepowered.org/repository/maven-public/' }
+    maven {
+        url 'http://maven.matthewtgm.xyz/repository/maven-public/'
+        allowInsecureProtocol = true
+    }
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72")
-    implementation 'com.github.wyvest:WyLib:0d5efa2c9a'
-    implementation("club.sk1er:Vigilance:100-10809-SNAPSHOT")
+    include ('gg.essential:loader-launchwrapper:1.1.0')
+    provided 'gg.essential:essential-1.8.9-forge:1328'
 }
 
 jar {
-    archiveName = "$baseName.$extension"
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest.attributes(
+            'ModSide': 'CLIENT',
+            'FMLCorePlugin': 'xyz.queffe.timerhud.tweaker.TimerHUDLoadingPlugin',
+            'FMLCorePluginContainsFMLMod': true,
+            'ForceLoadAsMod': true,
+            'TweakClass': 'gg.essential.loader.stage0.EssentialSetupTweaker',
+            'TweakOrder': '0'
+    )
+
+    enabled = false
 }
 
+/**
+ * This task simply replaces the `${version}` and `${mcversion}` properties in the mcmod.info with the data from Gradle
+ */
 processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
@@ -67,7 +66,7 @@ processResources {
 
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
-        include "mcmod.info", "LICENSE.txt"
+        include "mcmod.info"
 
         // replace version and mcversion
         expand "version": project.version, "mcversion": project.minecraft.version
@@ -77,42 +76,46 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude "mcmod.info"
     }
-
-    rename '(.+_at.cfg)', 'META-INF/$1'
 }
 
-// asbyth cool process resources
-task moveResources {
-    doLast {
-        ant.move file: "${buildDir}/resources/main",
-                todir: "${buildDir}/classes/java"
-    }
-}
-
-shadowJar {
-	dependencies {
-        include(dependency('com.github.wyvest:WyLib:0d5efa2c9a'))
-		include(dependency('club.sk1er:Vigilance:100-10809-SNAPSHOT'))
-        include(dependency('club.sk1er:UniversalCraft:98-10809-SNAPSHOT'))
-        include(dependency('club.sk1er:Elementa:255-10809-SNAPSHOT'))
-    	}
-
-    relocate("club.sk1er", "wyvest.sk1er")
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    archiveName = "$baseName.$extension"
-    classifier = ''
-    exclude "dummyThing"
-    exclude "module-info.class"
-}
-
-reobf {
-    shadowJar {
-        mappingType = "SEARGE"
-    }
-}
-
-tasks.moveResources.dependsOn processResources
-tasks.classes.dependsOn moveResources
-//end asbyth cool resource fix
-
+// This forces the build task to run shadowJar after
 tasks.reobfJar.dependsOn(tasks.shadowJar)
+
+// This adds support to ("embed", "shade", "include") libraries into our JAR
+shadowJar {
+    archiveClassifier.set("")
+    configurations = [project.configurations.include]
+    duplicatesStrategy DuplicatesStrategy.EXCLUDE
+
+
+    exclude 'LICENSE.md'
+    exclude 'pack.mcmeta'
+    exclude 'dummyThing'
+    exclude '**/module-info.class'
+    exclude '*.so'
+    exclude '*.dylib'
+    exclude '*.dll'
+    exclude '*.jnilib'
+    exclude 'ibxm/**'
+    exclude 'com/jcraft/**'
+    exclude 'org/lwjgl/**'
+    exclude 'net/java/**'
+
+    exclude 'META-INF/proguard/**'
+    exclude 'META-INF/maven/**'
+    exclude 'META-INF/versions/**'
+    exclude 'META-INF/com.android.tools/**'
+
+    exclude 'fabric.mod.json'
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}

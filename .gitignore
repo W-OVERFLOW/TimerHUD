@@ -1,18 +1,29 @@
-# Gradle
-.gradle
-/build/
-gradle-app.setting
-!gradle-wrapper.jar
-.gradletasknamecache
+# eclipse
+eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
 
-
-# IntelliJ
-/.idea/
-/output/
-*.iml
+# idea
+out
+classes
 *.ipr
 *.iws
+*.iml
+.idea
 
+# gradle
+build
+.gradle
 
-# Minecraft
-/run/
+#Netbeans
+.nb-gradle
+.nb-gradle-properties
+
+# other
+run
+.DS_Store
+Thumbs.db

@@ -1,11 +1,11 @@
 # TimerHUD
 
-This mod is basically a stopwatch/timer, in Minecraft. It has a really cool HUD (not like it's like any other) and uses a snapshot build of Vigilance for its config screen. Instead of counting every Minecraft tick, it counts using Multithreading (to make sure that Minecraft doesn't get affected by the timer) and other cool stuff that I don't want to explain!!!! In general, it's a good mod and you should use it.
+This mod is basically a stopwatch/timer, in Minecraft. It has a really cool HUD and uses Vigilance for its config screen. Instead of counting every Minecraft tick, it counts using Multithreading (to make sure that Minecraft doesn't get affected by the timer) and other cool stuff that I don't want to explain!!!! In general, it's a good mod and you should use it.
 
 
 ### Hypixel fourm thread: https://hypixel.net/threads/4202127
 
-### Releases: https://github.com/wyvest/timerhud-forge/releases
+### Releases: https://github.com/W-OVERFLOW/timerhud-forge/releases
 
 ### Images:
 ![image](https://user-images.githubusercontent.com/45589059/117296749-a0753100-ae9f-11eb-9b27-25b8c5ccaa03.png)
