@@ -1,7 +1,7 @@
-package xyz.queffe.timerhud
+package xyz.qalcyo.timerhud
 
 import gg.essential.api.utils.Multithreading
-import xyz.queffe.timerhud.TimerHUD.mc
+import xyz.qalcyo.timerhud.TimerHUD.mc
 import java.awt.event.ActionListener
 import javax.swing.Timer
 
@@ -11,12 +11,13 @@ object TimerTask {
     var secondsPassed = 0
     var running = false
     private var timerTask = ActionListener { secondsPassed += 1 }
-    var timer = Timer(1000, timerTask)
+    private var timer = Timer(1000, timerTask)
 
     fun toggleTimer() {
         Multithreading.runAsync {
             if (!running) {
                 if (mc.theWorld == null) return@runAsync
+                secondsPassed = 0
                 timer.start()
                 running = true
             } else {
@@ -30,6 +31,7 @@ object TimerTask {
     fun setTimer(status: Boolean) {
         Multithreading.runAsync {
             if (status) {
+                secondsPassed = 0
                 timer.start()
                 running = true
             } else {

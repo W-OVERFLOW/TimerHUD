@@ -1,4 +1,4 @@
-package xyz.queffe.timerhud.gui
+package xyz.qalcyo.timerhud.gui
 
 import gg.essential.api.EssentialAPI
 import gg.essential.api.utils.Multithreading
@@ -7,10 +7,10 @@ import net.minecraft.client.gui.GuiMainMenu
 import net.minecraft.client.gui.GuiScreen
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.util.EnumChatFormatting
-import xyz.queffe.timerhud.TimerHUD
-import xyz.queffe.timerhud.utils.Updater
-import xyz.queffe.timerhud.utils.Updater.shouldUpdate
-import xyz.queffe.timerhud.utils.Updater.updateUrl
+import xyz.qalcyo.timerhud.TimerHUD
+import xyz.qalcyo.timerhud.utils.Updater
+import xyz.qalcyo.timerhud.utils.Updater.shouldUpdate
+import xyz.qalcyo.timerhud.utils.Updater.updateUrl
 import java.io.File
 import kotlin.math.max
 

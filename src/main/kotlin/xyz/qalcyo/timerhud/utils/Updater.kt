@@ -1,4 +1,4 @@
-package xyz.queffe.timerhud.utils
+package xyz.qalcyo.timerhud.utils
 
 import gg.essential.api.EssentialAPI
 import kotlinx.coroutines.CoroutineName
@@ -7,10 +7,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import net.minecraft.util.Util
 import net.minecraftforge.fml.common.versioning.DefaultArtifactVersion
-import xyz.queffe.timerhud.TimerHUD
-import xyz.queffe.timerhud.TimerHUD.mc
-import xyz.queffe.timerhud.config.TimerConfig
-import xyz.queffe.timerhud.gui.DownloadConfirmGui
+import xyz.qalcyo.timerhud.TimerHUD
+import xyz.qalcyo.timerhud.TimerHUD.mc
+import xyz.qalcyo.timerhud.config.TimerConfig
+import xyz.qalcyo.timerhud.gui.DownloadConfirmGui
 import org.apache.http.HttpResponse
 import org.apache.http.client.methods.HttpGet
 import java.awt.Desktop
@@ -31,7 +31,7 @@ object Updater {
     fun update() {
         CoroutineScope(Dispatchers.IO + CoroutineName("${TimerHUD.NAME}-UpdateChecker")).launch {
             val latestRelease =
-                APIUtil.getJSONResponse("https://api.github.com/repos/Queffe/${TimerHUD.ID}/releases/latest")
+                APIUtil.getJSONResponse("https://api.github.com/repos/Qalcyo/${TimerHUD.ID}/releases/latest")
             latestTag = latestRelease.get("tag_name").asString
 
             val currentVersion = DefaultArtifactVersion(TimerHUD.VERSION.substringBefore("-"))

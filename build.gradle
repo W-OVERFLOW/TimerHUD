@@ -17,7 +17,6 @@ minecraft {
     runDir = "run"
     mappings = "stable_22"
     makeObfSourceJar = false
-    clientJvmArgs += '-Dfml.coreMods.load=xyz.queffe.timerhud.tweaker.TimerHUDLoadingPlugin'
     clientRunArgs += '--tweakClass gg.essential.loader.stage0.EssentialSetupTweaker'
 }
 
@@ -46,7 +45,6 @@ dependencies {
 jar {
     manifest.attributes(
             'ModSide': 'CLIENT',
-            'FMLCorePlugin': 'xyz.queffe.timerhud.tweaker.TimerHUDLoadingPlugin',
             'FMLCorePluginContainsFMLMod': true,
             'ForceLoadAsMod': true,
             'TweakClass': 'gg.essential.loader.stage0.EssentialSetupTweaker',

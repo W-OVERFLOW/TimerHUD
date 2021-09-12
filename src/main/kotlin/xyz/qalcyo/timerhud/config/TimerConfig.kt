@@ -1,4 +1,4 @@
-package xyz.queffe.timerhud.config
+package xyz.qalcyo.timerhud.config
 
 import gg.essential.api.EssentialAPI
 import gg.essential.vigilance.Vigilant
@@ -6,12 +6,12 @@ import gg.essential.vigilance.data.Category
 import gg.essential.vigilance.data.Property
 import gg.essential.vigilance.data.PropertyType
 import gg.essential.vigilance.data.SortingBehavior
-import xyz.queffe.timerhud.TimerHUD
-import xyz.queffe.timerhud.TimerHUD.NAME
-import xyz.queffe.timerhud.TimerHUD.mc
-import xyz.queffe.timerhud.gui.DownloadConfirmGui
-import xyz.queffe.timerhud.gui.HUDGui
-import xyz.queffe.timerhud.utils.Updater
+import xyz.qalcyo.timerhud.TimerHUD
+import xyz.qalcyo.timerhud.TimerHUD.NAME
+import xyz.qalcyo.timerhud.TimerHUD.mc
+import xyz.qalcyo.timerhud.gui.DownloadConfirmGui
+import xyz.qalcyo.timerhud.gui.HUDGui
+import xyz.qalcyo.timerhud.utils.Updater
 import java.awt.Color
 import java.io.File
 

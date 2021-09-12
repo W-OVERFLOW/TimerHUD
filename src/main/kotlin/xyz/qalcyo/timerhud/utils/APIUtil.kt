@@ -1,8 +1,8 @@
-package xyz.queffe.timerhud.utils
+package xyz.qalcyo.timerhud.utils
 
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import xyz.queffe.timerhud.TimerHUD
+import xyz.qalcyo.timerhud.TimerHUD
 import org.apache.http.HttpRequest
 import org.apache.http.HttpResponse
 import org.apache.http.HttpVersion

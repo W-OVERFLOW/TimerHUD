@@ -1,11 +1,11 @@
-package xyz.queffe.timerhud.gui
+package xyz.qalcyo.timerhud.gui
 
 import gg.essential.api.EssentialAPI
 import net.minecraft.client.gui.GuiButton
 import net.minecraft.client.gui.GuiScreen
 import net.minecraft.client.renderer.GlStateManager
-import xyz.queffe.timerhud.config.TimerConfig
-import xyz.queffe.timerhud.hud.HUD
+import xyz.qalcyo.timerhud.config.TimerConfig
+import xyz.qalcyo.timerhud.hud.HUD
 import org.lwjgl.input.Keyboard
 import org.lwjgl.opengl.GL11
 import java.io.IOException

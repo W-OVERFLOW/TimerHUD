@@ -1,12 +1,12 @@
-package xyz.queffe.timerhud.commands
+package xyz.qalcyo.timerhud.commands
 
 import gg.essential.api.EssentialAPI
 import gg.essential.api.commands.Command
 import gg.essential.api.commands.DefaultHandler
 import gg.essential.api.commands.SubCommand
-import xyz.queffe.timerhud.TimerHUD
-import xyz.queffe.timerhud.config.TimerConfig
-import xyz.queffe.timerhud.gui.HUDGui
+import xyz.qalcyo.timerhud.TimerHUD
+import xyz.qalcyo.timerhud.config.TimerConfig
+import xyz.qalcyo.timerhud.gui.HUDGui
 
 @Suppress("unused")
 object TimerHUDCommand : Command(TimerHUD.ID, true) {

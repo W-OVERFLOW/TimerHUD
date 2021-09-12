@@ -1,4 +1,4 @@
-package xyz.queffe.timerhud.utils
+package xyz.qalcyo.timerhud.utils
 
 import net.minecraft.client.gui.FontRenderer
 import java.awt.Color

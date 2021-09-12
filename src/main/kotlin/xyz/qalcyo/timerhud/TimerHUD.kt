@@ -1,4 +1,4 @@
-package xyz.queffe.timerhud
+package xyz.qalcyo.timerhud
 
 import gg.essential.universal.ChatColor
 import net.minecraft.client.Minecraft
@@ -10,10 +10,10 @@ import net.minecraftforge.fml.client.registry.ClientRegistry
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
-import xyz.queffe.timerhud.commands.TimerHUDCommand
-import xyz.queffe.timerhud.config.TimerConfig
-import xyz.queffe.timerhud.listener.Listener
-import xyz.queffe.timerhud.utils.Updater
+import xyz.qalcyo.timerhud.commands.TimerHUDCommand
+import xyz.qalcyo.timerhud.config.TimerConfig
+import xyz.qalcyo.timerhud.listener.Listener
+import xyz.qalcyo.timerhud.utils.Updater
 import org.lwjgl.input.Keyboard
 import java.io.File
 
@@ -39,7 +39,7 @@ object TimerHUD {
     }
 
     lateinit var jarFile: File
-    val modDir = File(File(File(mc.mcDataDir, "config"), "Queffe"), NAME)
+    val modDir = File(File(File(mc.mcDataDir, "config"), "Qalcyo"), NAME)
     var timerKeybind: KeyBinding = KeyBinding("Toggle Timer", Keyboard.KEY_NONE, "TimerHUD")
 
     @Mod.EventHandler
@@ -53,8 +53,8 @@ object TimerHUD {
         TimerConfig.initialize()
         TimerHUDCommand.register()
         Updater.update()
-        TimerTask.timer.start()
-        TimerTask.setTimer(false) //just to make sure
+        TimerTask.setTimer(true)
+        TimerTask.setTimer(false)
         ClientRegistry.registerKeyBinding(timerKeybind)
         EVENT_BUS.register(Listener)
     }
