@@ -2,6 +2,8 @@
 
 This mod is basically a stopwatch/timer, in Minecraft. It has a really cool HUD and uses Vigilance for its config screen. Instead of counting every Minecraft tick, it counts using Multithreading (to make sure that Minecraft doesn't get affected by the timer) and other cool stuff that I don't want to explain!!!! In general, it's a good mod and you should use it.
 
+<a href="https://github.com/Qalcyo/TimerHUD/releases" target="_blank">
+<img alt="downloads" src="https://img.shields.io/github/downloads/Qalcyo/TimerHUD/total?color=F5C400&style=for-the-badge" /> <img alt="downloads latest" src="https://img.shields.io/github/downloads-pre/Qalcyo/TimerHUD/latest/total?color=F5C400&style=for-the-badge" />
 
 ### Hypixel fourm thread: https://hypixel.net/threads/4202127
 
