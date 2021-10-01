@@ -5,7 +5,7 @@ This mod is basically a stopwatch/timer, in Minecraft. It has a really cool HUD 
 
 ### Hypixel fourm thread: https://hypixel.net/threads/4202127
 
-### Releases: https://github.com/W-OVERFLOW/timerhud-forge/releases
+### Releases: https://github.com/Qalcyo/TimerHUD/releases
 
 ### Images:
 ![image](https://user-images.githubusercontent.com/45589059/117296749-a0753100-ae9f-11eb-9b27-25b8c5ccaa03.png)
