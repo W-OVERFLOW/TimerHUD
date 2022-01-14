@@ -1,19 +1,16 @@
-package xyz.qalcyo.timerhud
+package net.wyvest.timerhud
 
-import gg.essential.universal.ChatColor
 import net.minecraft.client.Minecraft
 import net.minecraft.client.settings.KeyBinding
-import net.minecraft.util.ChatComponentText
-import net.minecraft.util.EnumChatFormatting
 import net.minecraftforge.common.MinecraftForge.EVENT_BUS
 import net.minecraftforge.fml.client.registry.ClientRegistry
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
-import xyz.qalcyo.timerhud.commands.TimerHUDCommand
-import xyz.qalcyo.timerhud.config.TimerConfig
-import xyz.qalcyo.timerhud.listener.Listener
-import xyz.qalcyo.timerhud.utils.Updater
+import net.wyvest.timerhud.commands.TimerHUDCommand
+import net.wyvest.timerhud.config.TimerConfig
+import net.wyvest.timerhud.listener.Listener
+import net.wyvest.timerhud.updater.Updater
 import org.lwjgl.input.Keyboard
 import java.io.File
 
@@ -25,21 +22,13 @@ import java.io.File
 )
 object TimerHUD {
     const val NAME = "TimerHUD"
-    const val VERSION = "3.0.0"
+    const val VERSION = "3.1.0"
     const val ID = "timerhud"
     val mc: Minecraft
         get() = Minecraft.getMinecraft()
 
-    fun sendMessage(message: String) {
-        if (mc.thePlayer == null)
-            return
-        val text =
-            ChatComponentText(EnumChatFormatting.DARK_PURPLE.toString() + "[$NAME] " + ChatColor.RESET.toString() + " " + message)
-        Minecraft.getMinecraft().thePlayer.addChatMessage(text)
-    }
-
     lateinit var jarFile: File
-    val modDir = File(File(File(mc.mcDataDir, "config"), "Qalcyo"), NAME)
+    val modDir = File(File(mc.mcDataDir, "W-OVERFLOW"), NAME)
     var timerKeybind: KeyBinding = KeyBinding("Toggle Timer", Keyboard.KEY_NONE, "TimerHUD")
 
     @Mod.EventHandler

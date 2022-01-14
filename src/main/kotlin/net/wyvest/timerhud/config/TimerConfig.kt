@@ -1,4 +1,4 @@
-package xyz.qalcyo.timerhud.config
+package net.wyvest.timerhud.config
 
 import gg.essential.api.EssentialAPI
 import gg.essential.vigilance.Vigilant
@@ -6,12 +6,11 @@ import gg.essential.vigilance.data.Category
 import gg.essential.vigilance.data.Property
 import gg.essential.vigilance.data.PropertyType
 import gg.essential.vigilance.data.SortingBehavior
-import xyz.qalcyo.timerhud.TimerHUD
-import xyz.qalcyo.timerhud.TimerHUD.NAME
-import xyz.qalcyo.timerhud.TimerHUD.mc
-import xyz.qalcyo.timerhud.gui.DownloadConfirmGui
-import xyz.qalcyo.timerhud.gui.HUDGui
-import xyz.qalcyo.timerhud.utils.Updater
+import net.wyvest.timerhud.TimerHUD
+import net.wyvest.timerhud.TimerHUD.NAME
+import net.wyvest.timerhud.gui.HUDGui
+import net.wyvest.timerhud.updater.DownloadGui
+import net.wyvest.timerhud.updater.Updater
 import java.awt.Color
 import java.io.File
 
@@ -40,7 +39,7 @@ object TimerConfig : Vigilant(File(TimerHUD.modDir, "${TimerHUD.ID}.toml"), NAME
         category = "Render"
     )
     fun openHUD() {
-        EssentialAPI.getGuiUtil().openScreen(HUDGui(gui()))
+        EssentialAPI.getGuiUtil().openScreen(HUDGui())
     }
 
     @Property(
@@ -153,7 +152,7 @@ object TimerConfig : Vigilant(File(TimerHUD.modDir, "${TimerHUD.ID}.toml"), NAME
     )
     fun update() {
         if (Updater.shouldUpdate) EssentialAPI.getGuiUtil()
-            .openScreen(DownloadConfirmGui(mc.currentScreen)) else EssentialAPI.getNotifications()
+            .openScreen(DownloadGui()) else EssentialAPI.getNotifications()
             .push(NAME, "No update had been detected at startup, and thus the update GUI has not been shown.")
     }
 

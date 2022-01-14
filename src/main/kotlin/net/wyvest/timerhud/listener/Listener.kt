@@ -1,16 +1,16 @@
-package xyz.qalcyo.timerhud.listener
+package net.wyvest.timerhud.listener
 
 import net.minecraft.client.gui.GuiChat
 import net.minecraftforge.client.event.RenderGameOverlayEvent
 import net.minecraftforge.event.world.WorldEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.gameevent.InputEvent
-import xyz.qalcyo.timerhud.TimerHUD.mc
-import xyz.qalcyo.timerhud.TimerHUD.timerKeybind
-import xyz.qalcyo.timerhud.TimerTask
-import xyz.qalcyo.timerhud.config.TimerConfig
-import xyz.qalcyo.timerhud.gui.HUDGui
-import xyz.qalcyo.timerhud.hud.HUD
+import net.wyvest.timerhud.TimerHUD.mc
+import net.wyvest.timerhud.TimerHUD.timerKeybind
+import net.wyvest.timerhud.TimerTask
+import net.wyvest.timerhud.config.TimerConfig
+import net.wyvest.timerhud.gui.HUDGui
+import net.wyvest.timerhud.hud.HUD
 import org.lwjgl.input.Keyboard
 import org.lwjgl.input.Mouse
 

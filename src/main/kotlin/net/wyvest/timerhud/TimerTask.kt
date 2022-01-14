@@ -1,7 +1,7 @@
-package xyz.qalcyo.timerhud
+package net.wyvest.timerhud
 
 import gg.essential.api.utils.Multithreading
-import xyz.qalcyo.timerhud.TimerHUD.mc
+import net.wyvest.timerhud.TimerHUD.mc
 import java.awt.event.ActionListener
 import javax.swing.Timer
 

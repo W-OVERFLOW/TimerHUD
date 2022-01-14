@@ -1,10 +1,10 @@
-package xyz.qalcyo.timerhud.hud
+package net.wyvest.timerhud.hud
 
 import net.minecraft.client.gui.Gui
-import xyz.qalcyo.timerhud.TimerHUD.mc
-import xyz.qalcyo.timerhud.TimerTask
-import xyz.qalcyo.timerhud.config.TimerConfig
-import xyz.qalcyo.timerhud.utils.drawString
+import net.wyvest.timerhud.TimerHUD.mc
+import net.wyvest.timerhud.TimerTask
+import net.wyvest.timerhud.config.TimerConfig
+import net.wyvest.timerhud.utils.drawString
 import kotlin.math.max
 
 object HUD {
